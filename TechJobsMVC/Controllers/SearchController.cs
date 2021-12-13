@@ -21,6 +21,8 @@ namespace TechJobsMVC.Controllers
             {"coreCompetency", "Skill"}
         };
 
+        private bool ctrl = false;
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -29,6 +31,9 @@ namespace TechJobsMVC.Controllers
         }
 
         // TODO #3: Create an action method to process a search request and render the updated search view. 
+        // POST: /<controller>/index
+        //[HttpPost]
+        //[Route("results")]
         public IActionResult Results(string searchType, string searchTerm)
         {
             List<Job> jobs;
@@ -43,7 +48,10 @@ namespace TechJobsMVC.Controllers
                 ViewBag.title = "Jobs with " + ColumnChoices[searchType] + ": " + searchTerm;
             }
             ViewBag.jobs = jobs;
-            return View();
+            ViewBag.columns = ListController.ColumnChoices;
+
+            //return View();
+            return View("Index");
         }
     }
 }

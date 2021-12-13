@@ -2,7 +2,7 @@
 
     <h1>@ViewBag.title</h1>
 
-    <form action="/search/results" method="post">
+    <form asp-controller="Search" asp-action="Results" method="post">
         <h2>Search by:</h2>
 
         <p>
@@ -26,10 +26,40 @@
 
     <hr />
 
-    @{
+    @if (ViewBag.jobs != null)
+    {
         //TODO #4: Loop over the search results to display all job fields.
+
+        @foreach (var job in ViewBag.jobs)
+        {
+            //TODO #1: Use a loop to display job results in a table.
+            <table class="job-listing">
+                <tr>
+                    <td>ID</td>
+                    <td>@job.Id</td>
+                </tr>
+                <tr>
+                    <td>Job Name</td>
+                    <td>@job.Name</td>
+                </tr>
+                <tr>
+                    <td>Position</td>
+                    <td>@job.PositionType</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>@job.Location</td>
+                </tr>
+                <tr>
+                    <td>Skills</td>
+                    <td>@job.CoreCompetency</td>
+                </tr>
+                <tr>
+                    <td>Employer</td>
+                    <td>@job.Employer</td>
+                </tr>
+            </table>
+        }
     }
-
-
 
 </div>
